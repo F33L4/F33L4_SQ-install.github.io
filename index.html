@@ -524,7 +524,7 @@
         </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#o-projektu">Learn more</a>
-          <a class="btn btn-secondary" href="https://github.com/TVUJ-USERNAME/TVUJ-REPO" target="_blank" rel="noreferrer">GitHub repository</a>
+          
         </div>
       </div>
 
@@ -577,23 +577,27 @@
           <article class="card">
             <h3>Hardware</h3>
             <div class="tag-row">
-              <span class="tag">Head unit / signal source</span>
-              <span class="tag">DSP processor</span>
-              <span class="tag">Amplifiers</span>
-              <span class="tag">Front speakers</span>
-              <span class="tag">Subwoofer</span>
-              <span class="tag">Wiring and fusing</span>
+              <span class="tag">Helix DSP.3S</span>
+              <span class="tag">Audison AF M1D</span>
+              <span class="tag">Zapco HB 154D II</span>
+              <span class="tag">Fosi Audio CA30</span>
+              <span class="tag">Dayton Audio SS10-22</span>
+              <span class="tag">Audison APS 10 S4S</span>
+              <span class="tag">Audison AP 6.5P</span>
+              <span class="tag">SB Acoustics SB65WBAC25-4</span>
+              <span class="tag">Helix Ci5 T25FM-CA</span>
             </div>
           </article>
           <article class="card">
             <h3>Installation work</h3>
             <div class="tag-row">
-              <span class="tag">Door sound deadening</span>
-              <span class="tag">Mounting adapters</span>
-              <span class="tag">3D printed parts</span>
-              <span class="tag">Crossover configuration</span>
-              <span class="tag">Time alignment</span>
+              <span class="tag">Sound deadening</span>
+              <span class="tag">3D modeling and printing</span>
+              <span class="tag">Electrical installation</span>
+              <span class="tag">DSP configuration</span>
               <span class="tag">System measurements</span>
+              <span class="tag">Custom speaker enclosure design</span>
+              <span class="tag">Custom enclosure fabrication</span>
             </div>
           </article>
         </div>
@@ -620,7 +624,7 @@
             <div class="date">Phase 2</div>
             <div>
               <h3>Preparation and fabrication</h3>
-              <p>Fabrication of mounting parts, wiring preparation, door sound deadening and installation preparation.</p>
+              <p>Fabrication of mounting parts, wiring preparation, sound deadening and installation preparation.</p>
             </div>
           </div>
           <div class="timeline-item">
@@ -650,24 +654,25 @@
         </div>
 
         <div class="grid" style="gap: 28px;">
+          <article id="midrange-pods" class="card">
+            <h3>Midrange pods + tweeters</h3>
+            <p style="margin-bottom:16px;">Fabrication and installation of midrange pods and tweeters.</p>
+            <div class="gallery" id="gallery-midrange-pods" style="margin-top:16px;"></div>
+          </article>
+
           <article id="front-sub" class="card">
             <h3>Front sub</h3>
             <p style="margin-bottom:16px;">Front subwoofer enclosure fabrication and installation process.</p>
-            <div class="count-badge">$1 photos</div>
+            
             <div class="gallery" id="gallery-front-sub" style="margin-top:16px;"></div>
           </article>
 
-          <article id="measurements" class="card">
-            <h3>Measurements</h3>
-            <p style="margin-bottom:16px;">Frequency response, EQ and time alignment measurements.</p>
-            <div class="count-badge">7 graphs</div>
-            <div class="gallery" id="gallery-measurements" style="margin-top:16px;"></div>
-          </article>
+          
 
           <article id="rear-sub" class="card">
             <h3>Rear sub</h3>
             <p style="margin-bottom:16px;">Rear subwoofer enclosure construction and final installation.</p>
-            <div class="count-badge">$1 photos</div>
+            
             <div class="gallery" id="gallery-rear-sub" style="margin-top:16px;"></div>
           </article>
 
@@ -684,11 +689,12 @@
             <div class="gallery" id="gallery-cowl" style="margin-top:8px;"></div>
           </article>
 
-          <article id="midrange-pods" class="card">
-            <h3>Midrange pods + tweeters</h3>
-            <p style="margin-bottom:16px;">Fabrication and installation of midrange pods and tweeters.</p>
-            <div class="count-badge">$1 photos</div>
-            <div class="gallery" id="gallery-midrange-pods" style="margin-top:16px;"></div>
+          
+
+          <article id="measurements" class="card">
+            <h3>Measurements</h3>
+            <p style="margin-bottom:16px;">Frequency response, EQ and time alignment measurements.</p>
+            <div class="gallery" id="gallery-measurements" style="margin-top:16px;"></div>
           </article>
         </div>
       </div>
@@ -810,14 +816,14 @@
     };
 
     const galleryMounts = [
+      ['gallery-midrange-pods', galleries.midrangePods],
       ['gallery-front-sub', galleries.frontSub],
-      ['gallery-measurements', galleries.measurements],
       ['gallery-rear-sub', galleries.rearSub],
       ['gallery-front-doors', galleries.frontDoors],
       ['gallery-trunk-rear', galleries.trunkRear],
       ['gallery-roof', galleries.roof],
       ['gallery-cowl', galleries.cowl],
-      ['gallery-midrange-pods', galleries.midrangePods]
+      ['gallery-measurements', galleries.measurements]
     ];
 
     const lightbox = document.getElementById('lightbox');
