@@ -308,23 +308,127 @@
       border-radius: 20px;
       overflow: hidden;
       position: relative;
-      background:
-        linear-gradient(135deg, rgba(124,156,255,0.22), rgba(88,225,193,0.18)),
-        rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.82));
+      color: #eef2ff;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .subsection-grid {
       display: grid;
-      place-items: center;
-      color: #e7edff;
-      text-align: center;
-      padding: 18px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .subsection-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .subsection-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .count-badge {
+      display: inline-flex;
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124,156,255,0.12);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dfe7ff;
+      font-size: 0.92rem;
       font-weight: 700;
     }
 
-    .gallery-item small {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-weight: 500;
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 18, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 100;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      width: min(1200px, 100%);
+      max-height: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lightbox-media {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .lightbox-media img {
+      max-width: 100%;
+      max-height: 76vh;
+      object-fit: contain;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .lightbox-meta {
+      margin-top: 14px;
+      color: var(--text);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .lightbox-btn,
+    .lightbox-close {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.07);
+      color: white;
+      font-size: 1.35rem;
+      cursor: pointer;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-size: 1.5rem;
     }
 
     .contact-box {
@@ -352,7 +456,8 @@
       .hero-grid,
       .grid-3,
       .grid-2,
-      .gallery {
+      .gallery,
+      .subsection-grid {
         grid-template-columns: 1fr;
       }
 
@@ -569,24 +674,78 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Galerie</h2>
-            <p>Zatím jsou tu placeholdery. Později sem jen vložíš reálné fotky projektu.</p>
+            <h2>Galerie podle částí projektu</h2>
+            <p>Fotky jsou rozdělené podle jednotlivých částí instalace. Po kliknutí jde obrázky procházet šipkami.</p>
           </div>
         </div>
 
-        <div class="gallery">
-          <div class="gallery-item">
-            Foto instalace
-            <small>dveře / tlumení / montáž</small>
-          </div>
-          <div class="gallery-item">
-            Schéma zapojení
-            <small>napájení / signál / DSP</small>
-          </div>
-          <div class="gallery-item">
-            Měření a ladění
-            <small>grafy / výsledky / workflow</small>
-          </div>
+        <div class="grid grid-3" style="margin-bottom: 18px;">
+          <a class="card" href="#front-sub" style="display:block;"><h3>Front sub</h3><p>16 fotek z výroby a montáže předního subwooferu.</p></a>
+          <a class="card" href="#measurements" style="display:block;"><h3>Measurements</h3><p>7 měření a grafů s popisem jednotlivých kroků ladění.</p></a>
+          <a class="card" href="#rear-sub" style="display:block;"><h3>Rear sub</h3><p>6 fotek zadního subwooferu a ozvučnice.</p></a>
+          <a class="card" href="#sound-deadening" style="display:block;"><h3>Sound deadening / isolation</h3><p>Rozděleno na front doors, trunk, roof a cowl area.</p></a>
+          <a class="card" href="#midrange-pods" style="display:block;"><h3>Midrange pods + tweeters</h3><p>10 fotek výroby a osazení sloupků.</p></a>
+        </div>
+
+        <div class="grid" style="gap: 28px;">
+          <article id="front-sub" class="card">
+            <h3>Front sub</h3>
+            <p style="margin-bottom:16px;">Postup výroby a montáže předního subwooferu.</p>
+            <div class="count-badge">16 fotek</div>
+            <div class="gallery" id="gallery-front-sub" style="margin-top:16px;"></div>
+          </article>
+
+          <article id="measurements" class="card">
+            <h3>Measurements</h3>
+            <p style="margin-bottom:16px;">Měření frekvenční odezvy, EQ a časového zarovnání.</p>
+            <div class="count-badge">7 grafů</div>
+            <div class="gallery" id="gallery-measurements" style="margin-top:16px;"></div>
+          </article>
+
+          <article id="rear-sub" class="card">
+            <h3>Rear sub</h3>
+            <p style="margin-bottom:16px;">Zadní subwoofer, konstrukce a finální instalace.</p>
+            <div class="count-badge">6 fotek</div>
+            <div class="gallery" id="gallery-rear-sub" style="margin-top:16px;"></div>
+          </article>
+
+          <article id="sound-deadening" class="card">
+            <h3>Sound deadening / isolation</h3>
+            <p style="margin-bottom:16px;">Akustické úpravy karoserie rozdělené podle částí auta.</p>
+            <div class="subsection-grid" style="margin-bottom:18px;">
+              <div class="subsection-card">
+                <h3>Front doors</h3>
+                <p>Tlumení předních dveří.</p>
+                <div class="count-badge">10 fotek</div>
+              </div>
+              <div class="subsection-card">
+                <h3>Trunk and rear wheel wells</h3>
+                <p>Tlumení kufru a zadních podběhů.</p>
+                <div class="count-badge">11 fotek</div>
+              </div>
+              <div class="subsection-card">
+                <h3>Roof</h3>
+                <p>Tlumení střechy.</p>
+                <div class="count-badge">3 fotky</div>
+              </div>
+              <div class="subsection-card">
+                <h3>Cowl Area</h3>
+                <p>Úpravy v oblasti cowl area.</p>
+                <div class="count-badge">3 fotky</div>
+              </div>
+            </div>
+            <div class="gallery" id="gallery-front-doors"></div>
+            <div class="gallery" id="gallery-trunk-rear" style="margin-top:16px;"></div>
+            <div class="gallery" id="gallery-roof" style="margin-top:16px;"></div>
+            <div class="gallery" id="gallery-cowl" style="margin-top:16px;"></div>
+          </article>
+
+          <article id="midrange-pods" class="card">
+            <h3>Midrange pods + tweeters</h3>
+            <p style="margin-bottom:16px;">Výroba a osazení midrange pods a tweeterů.</p>
+            <div class="count-badge">10 fotek</div>
+            <div class="gallery" id="gallery-midrange-pods" style="margin-top:16px;"></div>
+          </article>
         </div>
       </div>
     </section>
@@ -614,5 +773,187 @@
       <div>© 2026 · Kompletní ozvučovací systém automobilu · Maturitní projekt</div>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Zavřít">×</button>
+    <div class="lightbox-inner">
+      <button class="lightbox-btn" id="lightbox-prev" aria-label="Předchozí">‹</button>
+      <div class="lightbox-media">
+        <img id="lightbox-image" src="" alt="" />
+        <div class="lightbox-meta" id="lightbox-caption"></div>
+      </div>
+      <button class="lightbox-btn" id="lightbox-next" aria-label="Další">›</button>
+    </div>
+  </div>
+
+  <script>
+    const galleries = {
+      frontSub: Array.from({ length: 16 }, (_, i) => ({
+        src: `images/Front sub/${i + 1}.jpeg`,
+        alt: `Front sub ${i + 1}`,
+        caption: `Front sub · foto ${i + 1}`
+      })),
+
+      measurements: [
+        {
+          src: 'images/Messurements/Honda jazz REW freq responses no crossover.png',
+          alt: 'Jen základní crossovery',
+          caption: 'Baseline measurement – only basic crossover filters applied'
+        },
+        {
+          src: 'images/Messurements/Honda jazz REW freq responses RA.png',
+          alt: 'Naladěné crossovery podle schopnosti repro v daném prostoru',
+          caption: 'Crossovers optimized according to driver behavior in the vehicle cabin'
+        },
+        {
+          src: 'images/Messurements/REW EQ.png',
+          alt: 'Crossovery a EQ filtry',
+          caption: 'System response after applying equalization filters'
+        },
+        {
+          src: 'images/Messurements/Honda jazz All REW freq response no TimeAlign.png',
+          alt: 'Frekvenční odezva celého systému bez časového zarovnání',
+          caption: 'Full system frequency response without time alignment'
+        },
+        {
+          src: 'images/Messurements/Honda jazz final REW freq response.png',
+          alt: 'Frekvenční odezva celého systému s časovým zarovnáním',
+          caption: 'Final system frequency response after time alignment'
+        },
+        {
+          src: 'images/Messurements/No timealigment.png',
+          alt: 'Nezarovnaný čas a fáze',
+          caption: 'Example of misaligned time and phase between drivers'
+        },
+        {
+          src: 'images/Messurements/Time aligned.png',
+          alt: 'Zarovnaný čas a fáze',
+          caption: 'Correctly aligned time and phase between drivers'
+        }
+      ],
+
+      rearSub: Array.from({ length: 6 }, (_, i) => ({
+        src: `images/Rear sub/${i + 1}.jpeg`,
+        alt: `Rear sub ${i + 1}`,
+        caption: `Rear sub · foto ${i + 1}`
+      })),
+
+      frontDoors: Array.from({ length: 10 }, (_, i) => ({
+        src: `images/Sound deadening:Isolation/front doors/${i + 1}.jpeg`,
+        alt: `Front doors ${i + 1}`,
+        caption: `Front doors · foto ${i + 1}`
+      })),
+
+      trunkRear: Array.from({ length: 11 }, (_, i) => ({
+        src: `images/Sound deadening:Isolation/trunk and rear wheel wells/${i + 1}.jpeg`,
+        alt: `Trunk and rear wheel wells ${i + 1}`,
+        caption: `Trunk and rear wheel wells · foto ${i + 1}`
+      })),
+
+      roof: Array.from({ length: 3 }, (_, i) => ({
+        src: `images/Sound deadening:Isolation/Roof/${i + 1}.jpeg`,
+        alt: `Roof ${i + 1}`,
+        caption: `Roof · foto ${i + 1}`
+      })),
+
+      cowl: Array.from({ length: 3 }, (_, i) => ({
+        src: `images/Sound deadening:Isolation/Cowl Area/${i + 1}.jpeg`,
+        alt: `Cowl Area ${i + 1}`,
+        caption: `Cowl Area · foto ${i + 1}`
+      })),
+
+      midrangePods: Array.from({ length: 10 }, (_, i) => ({
+        src: `images/midrange pods + tweeters/${i + 1}.jpeg`,
+        alt: `Midrange pods + tweeters ${i + 1}`,
+        caption: `Midrange pods + tweeters · foto ${i + 1}`
+      }))
+    };
+
+    const galleryMounts = [
+      ['gallery-front-sub', galleries.frontSub],
+      ['gallery-measurements', galleries.measurements],
+      ['gallery-rear-sub', galleries.rearSub],
+      ['gallery-front-doors', galleries.frontDoors],
+      ['gallery-trunk-rear', galleries.trunkRear],
+      ['gallery-roof', galleries.roof],
+      ['gallery-cowl', galleries.cowl],
+      ['gallery-midrange-pods', galleries.midrangePods]
+    ];
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openLightbox(images, index) {
+      currentImages = images;
+      currentIndex = index;
+      updateLightbox();
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+
+    function updateLightbox() {
+      const item = currentImages[currentIndex];
+      lightboxImage.src = encodeURI(item.src);
+      lightboxImage.alt = item.alt || item.caption || '';
+      lightboxCaption.textContent = item.caption || '';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateLightbox();
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateLightbox();
+    }
+
+    function renderGallery(mountId, images) {
+      const mount = document.getElementById(mountId);
+      if (!mount) return;
+
+      images.forEach((item, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'gallery-item';
+        button.setAttribute('aria-label', item.caption || item.alt || `Foto ${index + 1}`);
+        button.innerHTML = `
+          <img src="${encodeURI(item.src)}" alt="${item.alt || ''}">
+          <div class="gallery-caption">${item.caption || ''}</div>
+        `;
+        button.addEventListener('click', () => openLightbox(images, index));
+        mount.appendChild(button);
+      });
+    }
+
+    galleryMounts.forEach(([id, images]) => renderGallery(id, images));
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', showPrev);
+    lightboxNext.addEventListener('click', showNext);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+  </script>
 </body>
 </html>
