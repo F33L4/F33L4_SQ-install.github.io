@@ -568,18 +568,29 @@
         <div style="margin-top:28px" class="card">
           <h3>Engineering tools and measurements</h3>
           <p class="muted" style="margin-bottom:12px;">
-            Several software tools and measurement systems were used during the design and tuning process:
+            Software tools used during the design, modeling and tuning process:
           </p>
           <div class="tag-row">
-            <span class="tag">Helix DSP PC‑Tool</span>
+            <span class="tag">Helix DSP PC-Tool</span>
             <span class="tag">Room EQ Wizard (REW)</span>
             <span class="tag">HOLMImpulse</span>
-            <span class="tag">UMIK‑1 measurement microphone</span>
-            <span class="tag">SpeakerBox enclosure modeling</span>
-            <span class="tag">WinISD verification</span>
+            <span class="tag">SpeakerBox enclosure modeling software</span>
+            <span class="tag">WinISD enclosure modeling software</span>
           </div>
+
           <p class="muted" style="margin-top:16px;">
             Measurements were performed using a calibrated UMIK‑1 measurement microphone with calibration file. Frequency response, phase and time alignment were analyzed and optimized using REW and HOLMImpulse.
+          </p>
+
+          <p class="muted" style="margin-top:16px;">
+            The electrical system of the vehicle was also upgraded. The battery-to-chassis, alternator-to-battery and engine-to-battery wiring was upgraded to 35&nbsp;mm² OFC cable.
+            The audio power path uses a 125&nbsp;A main fuse located at the battery, followed by a 25&nbsp;mm² OFC power cable and a fused distribution block.
+            Individual fused outputs power each device: 80&nbsp;A for the Audison AF&nbsp;M1D (subwoofer amplifier), 60&nbsp;A for the Zapco HB&nbsp;154D&nbsp;II, 30&nbsp;A for the Fosi Audio CA30 and 15&nbsp;A for the Helix DSP.3S.
+          </p>
+
+          <p class="muted" style="margin-top:16px;">
+            The sum of fuse ratings in the distribution block exceeds the main fuse rating because the main fuse protects the power cable, while individual fuses protect the connected devices.
+            Due to the dynamic nature of music and frequency band separation between amplifiers, the system never reaches maximum current draw on all channels simultaneously.
           </p>
         </div>
 
