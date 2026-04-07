@@ -708,6 +708,10 @@
             <p style="margin-bottom:16px;">Vehicle body acoustic treatment divided by installation areas.</p>
             <h3 style="margin-top:22px;">Front doors</h3>
             <div class="gallery" id="gallery-front-doors"></div>
+            
+            <h3 style="margin-top:28px;">Front floor & wheel wells</h3>
+            <div class="gallery" id="gallery-front-floor" style="margin-top:8px;"></div>
+            
             <h3 style="margin-top:28px;">Trunk and rear wheel wells</h3>
             <div class="gallery" id="gallery-trunk-rear" style="margin-top:8px;"></div>
             <h3 style="margin-top:28px;">Roof</h3>
@@ -716,7 +720,11 @@
             <div class="gallery" id="gallery-cowl" style="margin-top:8px;"></div>
           </article>
 
-          
+          <article id="electronics" class="card">
+            <h3>Electronics installation</h3>
+            <p style="margin-bottom:16px;">Installation of amplifiers, DSP and distribution blocks under the seats.</p>
+            <div class="gallery" id="gallery-electronics" style="margin-top:16px;"></div>
+          </article>
 
           <article id="measurements" class="card">
             <h3>Measurements</h3>
@@ -817,6 +825,12 @@
         caption: `Front doors · picture ${i + 1}`
       })),
 
+      frontFloor: Array.from({ length: 3 }, (_, i) => ({
+        src: `images/Sound deadening:Isolation/front section of the floor and front wheel wells/${i + 1}.jpeg`,
+        alt: `Front floor & wheel wells ${i + 1}`,
+        caption: `Front floor & wheel wells · picture ${i + 1}`
+      })),
+
       trunkRear: Array.from({ length: 11 }, (_, i) => ({
         src: `images/Sound deadening:Isolation/trunk and rear wheel wells/${i + 1}.jpeg`,
         alt: `Trunk and rear wheel wells ${i + 1}`,
@@ -839,7 +853,20 @@
         src: `images/midrange pods + tweeters/${i + 1}.jpeg`,
         alt: `Midrange pods + tweeters ${i + 1}`,
         caption: `Midrange pods + tweeters · picture ${i + 1}`
-      }))
+      })),
+      
+      electronics: [
+        {
+          src: 'images/Under the seats/1.jpeg',
+          alt: 'Zapco amplifier, DSP, and distribution block',
+          caption: 'Zapco amplifier, DSP, and distribution block'
+        },
+        {
+          src: 'images/Under the seats/2.jpeg',
+          alt: 'Fosi amplifier',
+          caption: 'Fosi amplifier'
+        }
+      ]
     };
 
     const galleryMounts = [
@@ -847,9 +874,11 @@
       ['gallery-front-sub', galleries.frontSub],
       ['gallery-rear-sub', galleries.rearSub],
       ['gallery-front-doors', galleries.frontDoors],
+      ['gallery-front-floor', galleries.frontFloor],
       ['gallery-trunk-rear', galleries.trunkRear],
       ['gallery-roof', galleries.roof],
       ['gallery-cowl', galleries.cowl],
+      ['gallery-electronics', galleries.electronics],
       ['gallery-measurements', galleries.measurements]
     ];
 
